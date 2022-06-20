@@ -1,0 +1,85 @@
+
+<p-menubar [model]="items">
+  <p-button  label="Load tweets" icon="pi pi-refresh" styleClass="p-button-sm p-button-primary" (onClick)="loadTweets()"></p-button>
+</p-menubar>
+
+<router-outlet>
+<div class="container-fluid">
+  <div class="row">
+
+        <div class="col-6 mt-2">
+
+          <!-- <h2>BLob TV</h2> -->
+
+          <iframe width="100%" height="850px" src="https://www.youtube.com/embed/36YnV9STBqc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen audio="off"></iframe>
+
+          <p-toast styleClass="p-toast-custom" position="top-left" [preventDuplicates]="false"></p-toast>
+
+        </div>
+
+
+        <div class="col-6 mt-2">
+
+          <div class="row">
+            <div class="col-4" *ngFor="let tweet of newTweets">
+              <app-tweet [tweet]="tweet" (exibirTweetEvent)="exibirTweet($event)" (removerTweetEvent)="removerTweet($event)"></app-tweet>
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+  </div>
+
+  <div class="row">
+  </div>
+</div>
+
+</router-outlet>
+
+
+
+<!-- <p-dialog header="Novo Hastag" [(visible)]="displayTag" [style]="{width: '20vw'}">
+
+    <div class="field">
+      <input id="username1" type="username" aria-describedby="username1-help" pInputText [(ngModel)]="hashtag" style="width: 100%;" (keydown.space)="$event.preventDefault()" maxlength="20"/>
+      <br>
+      <small id="username1-help" class="block">Entre uma Hastag sem espaço.</small>
+      <br>
+      <small id="username1-help" class="block"> {{hashtag}} </small>
+  </div>
+  <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="displayTag=false" label="Salvar" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog> -->
+
+
+
+<p-dialog header="Settings" [(visible)]="displaySetting" [style]="{width: '50vw'}">
+
+  <p-panel header="Hastag selecionados" [toggleable]="true">
+
+    <div class="flex align-items-center">
+      <p-chips [(ngModel)]="selectedHashtags" [allowDuplicate]="false" [max]="5"  (onChipClick)="onChipClick($event.value)" (onClear)="onClearSelected()" styleClass="{width: '40vw'}" [showClear]="true" (keydown)="$event.preventDefault()"></p-chips>
+  </div>
+
+
+</p-panel>
+
+<p-panel header="Todos hashtags" [toggleable]="true" styleClass="mt-2">
+
+  <div class="flex align-items-center">
+    <p-chips [(ngModel)]="hashtags" [allowDuplicate]="false" [max]="10" (onChipClick)="onChipClick($event.value)" (onClear)="onClearCreated()" styleClass="{width: '40vw'}" [showClear]="true" (keydown.space)="$event.preventDefault()"></p-chips>
+</div>
+
+
+</p-panel>
+
+  <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="salvarHastags()" label="Salvar" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-toast key="info" position="top-right"></p-toast>

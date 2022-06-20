@@ -1,0 +1,15 @@
+
+  <div class="card" style="width: rem;">
+    <!-- <img src="..." class="card-img-top" alt="..."> -->
+    <div class="card-body">
+      <h5 class="card-title"> {{tweet.user}}</h5>
+      <h6 class="card-subtitle">N° {{tweet.id}}</h6>
+      <p class="card-text">
+        {{tweet.content}}
+      </p>
+    </div>
+    <div class="card-footer" style="display:flex; justify-content: space-between;">
+      <p-button label="Descartar" icon="pi pi-times" styleClass="p-button-danger p-button-sm" (click)="emitRemoverTweetEvent(tweet)"></p-button>
+      <p-button label="Exibir" icon="pi pi-check" styleClass="p-button-sm" (click)="emitExibirTweetEvent(tweet)" ></p-button>
+    </div>
+  </div>
